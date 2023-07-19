@@ -42,6 +42,13 @@ public class WorldBuilder : MonoBehaviour
 
             InstaniateObject(next.type, position, rotation);
         }
+
+        //TODO:
+        //create floor
+        //create rim walls
+
+        //make everything look nice
+ 
     }
 
     private void SetScale(int nipScale)
