@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {   
        
-        Texture2D testImage = (Texture2D)Resources.Load("TEst");
+        Texture2D testImage = (Texture2D)Resources.Load("ExampleMaze");
      
-        //Debug.Log(testImage + ">>" +  testImage.width + ">>" +  testImage.height);
+        Debug.Log(testImage + ">>" +  testImage.width + ">>" +  testImage.height);
 
         Color[,] testResult = ImageReader.ConvertImageToNippelArray(testImage, NIPPLECOUNTWIDTH, NIPPLECOUNTHEIGHT);
 
