@@ -10,32 +10,44 @@ public class GameManager : MonoBehaviour
     //---------GlobalFields--------//
     //-----------------------------//
     [Header("Nipples Data")]
-    public int NIPPLESIZE = 10; //in cm
-    public int NIPPLECOUNTWIDTH = 16;
-    public int NIPPLECOUNTHEIGHT = 6;
+    public int NIPPLESIZE ; //in cm
+    public int NIPPLECOUNTWIDTH;
+    public int NIPPLECOUNTHEIGHT;
 
     [Header("Field Dimensions")]
-    public int PLAYGROUNDWIDTH = 10; //in cm
-    public int PLAYGROUNDHEIGHT = 10; //in cm
+    public int PLAYGROUNDWIDTH ; //in cm
+    public int PLAYGROUNDHEIGHT; //in cm
     [Header("Map from Color to Objectname"), SerializeField]
     public Color[] COLORATINDEX = { Color.white };
     public string[] OBJECTNAMEATINDEX = { "wall" };
 
     public WorldBuilder worldBuilder;
     public Renderer textureRenderer;
+    
+    [SerializeField]
+    string imageNameForWorldGeneration;
 
-    private void Start()
-    {   
-       
-        Texture2D testImage = (Texture2D)Resources.Load("ExampleMaze");
-     
-        Debug.Log(testImage + ">>" +  testImage.width + ">>" +  testImage.height);
+
+    /// <summary>
+    /// Builds the World onClick with desired image
+    /// -> ich habe nur den Code aus der Start in eine diese Methode kopiert, damit das erst auf Knopdruck passiert.
+    /// </summary>
+    public void BuildWorld() {
+
+        //-> die Images, die geladen werden, sind "non readable" das muss in den Importersettings eingestellt, werden: solution laut Stackoverflow:
+        // https://stackoverflow.com/questions/25175864/making-a-texture2d-readable-in-unity-via-code
+        // wenn man die Datei schon hat und die read/write settings behält, bleibts erhältlich
+        Texture2D testImage = (Texture2D)Resources.Load(imageNameForWorldGeneration);
+        if (testImage == null) {
+            throw new System.Exception("no image with " + imageNameForWorldGeneration + "found ->check generation and folderstruture");
+        }
+        Debug.Log(testImage + ">>" + testImage.width + ">>" + testImage.height);
 
         Color[,] testResult = ImageReader.ConvertImageToNippelArray(testImage, NIPPLECOUNTWIDTH, NIPPLECOUNTHEIGHT);
 
-       // Debug.Log(testResult.Length);
+        // Debug.Log(testResult.Length);
 
-        DrawComputerVision(testResult,4);
+        DrawComputerVision(testResult, 4);
 
 
         Dictionary<Color, string> colorObjectMap = CreateColorObjectMap(COLORATINDEX, OBJECTNAMEATINDEX);
@@ -48,10 +60,9 @@ public class GameManager : MonoBehaviour
         //    Debug.Log(w.position.Item1 + "|" + w.position.Item2 + " >>> " + w.type);
         //}
 
-        
-        worldBuilder.CreateWorld(40,NIPPLECOUNTWIDTH,NIPPLECOUNTHEIGHT, worldObjects);
-
+        worldBuilder.CreateWorld(40, NIPPLECOUNTWIDTH, NIPPLECOUNTHEIGHT, worldObjects);
     }
+
 
     private Dictionary<Color, string> CreateColorObjectMap(Color[] colors, string[] types)
     { 
@@ -115,4 +126,7 @@ public class GameManager : MonoBehaviour
         // Step 3: return the new array.
         return result;
     }
+
+  
+
 }
