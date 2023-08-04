@@ -12,7 +12,7 @@ Functionality which creates the picture and saves it for later use.
 Extra Canvas to preview the taken picture and the functionality to start over 
 On Click okay it will open the next scene.
 Theres an Exitbuttons as well, of course.
-### Maze
+### Maze:
 On Enter the Scene the App will turn each lego-nipple into a Gameobject.
 Then a Player will be spawned with which you can explore your built world, started from Lego.
 Collect the Coins to gether some points. Its in your hand if you can achieve a new highscore, based on the world u built bevore :)
