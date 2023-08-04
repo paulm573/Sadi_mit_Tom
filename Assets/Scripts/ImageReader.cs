@@ -7,12 +7,11 @@ public static class ImageReader
 {
     // ********************** Fine Tuning *************************
 
-    // Analysed area per Nipple (from the center towards the outside) (in percent)
-    private const float percentageOfNippleUsed = 25f;
-    private const float percentageOffset = (100f - percentageOfNippleUsed) / 2f;
+  
 
     // Light Sensitivity (in percent)
-    private const float lightSensitivity = 10f;
+    private const float lightSensitivity = 1f;
+    private const float saturationStrengh = 1f;
 
     // *************************************************************
 
@@ -32,10 +31,14 @@ public static class ImageReader
         }
         return worldObjects;
     }
-    
-    public static Color[,] ConvertImageToNippelArray(Texture2D image, int nippleCountW, int nippleCountH)
+
+    public static Color[,] ConvertImageToNippelArray(Texture2D image, int nippleCountW, int nippleCountH, float percentageOfNippleUsed)
     {
-        Color[,] result = new Color[nippleCountW, nippleCountH];
+          // Analysed area per Nipple (from the center towards the outside) (in percent)
+    float percentageOffset = (100f - percentageOfNippleUsed) / 2f;
+
+
+    Color[,] result = new Color[nippleCountW, nippleCountH];
         
         int pixelPerNippel_I = image.width / nippleCountW ;
         int pixelPerNippel_J = image.height / nippleCountH ;
@@ -97,7 +100,7 @@ public static class ImageReader
 
         float x = Mathf.Pow(bH - aH, 2);
         float y = Mathf.Pow(bS - aS, 2);
-        float z = Mathf.Pow(bV - aV, 2) * (lightSensitivity/100f);  
+        float z = Mathf.Pow(bV - aV, 2);  
         return Mathf.Sqrt(x + y + z);
     }
 
