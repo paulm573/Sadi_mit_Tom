@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         //}
 
         
-        worldBuilder.CreateWorld(40,NIPPLECOUNTWIDTH,NIPPLECOUNTHEIGHT, worldObjects);
+        worldBuilder.CreateWorld(NIPPLESIZE,NIPPLECOUNTWIDTH,NIPPLECOUNTHEIGHT, worldObjects);
 
     }
 
