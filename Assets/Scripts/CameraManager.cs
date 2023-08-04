@@ -41,7 +41,7 @@ public class CameraManager : MonoBehaviour
         takenImage.SetPixels(WebCamTexture.GetPixels());
         takenImage = createImage(takenImage);
         takenImage.Apply();
-        ssp.GetComponent<RawImage>().texture = takenImage;
+        ssp.GetComponent<RawImage>().texture = takenImage; // 
       
         WebCamTexture.Stop();
     }
@@ -78,8 +78,10 @@ public class CameraManager : MonoBehaviour
         if (takenImage != null) {
             byte[] byteArray = takenImage.EncodeToPNG();
             System.IO.File.WriteAllBytes(Application.dataPath + "/Resources/" + fileName + ".png", byteArray);
-            Debug.Log("written the image to " + Application.dataPath + "/Resources/");
-        //    AssetDatabase.Refresh();
+            Debug.Log("written the image to " + Application.dataPath + "/Resources/"); 
+            // if the Image doesn´t exist already it might be blocked
+            //->solve: in the image settings make it "write/readable
+            AssetDatabase.Refresh(); //-> blocks building the game
         }
     }
 
