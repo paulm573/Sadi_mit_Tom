@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO.Enumeration;
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +14,9 @@ public class CameraManager : MonoBehaviour
     string fileName;
 
     private void Start() {
+
         webcamDevices = WebCamTexture.devices;
+        Debug.Log("camera name: " + webcamDevices[0].name);
         if (webcamDevices.Length == 0) {
             throw new System.Exception("no camera devices found");
         }
@@ -42,7 +41,7 @@ public class CameraManager : MonoBehaviour
         takenImage.SetPixels(WebCamTexture.GetPixels());
         takenImage = createImage(takenImage);
         takenImage.Apply();
-        ssp.GetComponent<RawImage>().texture = takenImage;
+        ssp.GetComponent<RawImage>().texture = takenImage; // 
       
         WebCamTexture.Stop();
     }
@@ -62,7 +61,9 @@ public class CameraManager : MonoBehaviour
                 result.SetPixel(x-spaceToRemove, y, tex.GetPixel(x, y));
             }
         }
-       // result.SetPixels(tmp); 
+        // result.SetPixels(tmp); 
+      
+
 
         return result;
 
@@ -78,6 +79,9 @@ public class CameraManager : MonoBehaviour
             byte[] byteArray = takenImage.EncodeToPNG();
             System.IO.File.WriteAllBytes(Application.dataPath + "/Resources/" + fileName + ".png", byteArray);
             Debug.Log("written the image to " + Application.dataPath + "/Resources/"); 
+            // if the Image doesn´t exist already it might be blocked
+            //->solve: in the image settings make it "write/readable
+            AssetDatabase.Refresh(); //-> blocks building the game
         }
     }
 
