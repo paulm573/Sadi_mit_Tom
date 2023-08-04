@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     /// Builds the World onClick with desired image
     /// -> ich habe nur den Code aus der Start in eine diese Methode kopiert, damit das erst auf Knopdruck passiert.
     /// </summary>
-    public void BuildWorld() {
+    public void Start() {
 
         //-> die Images, die geladen werden, sind "non readable" das muss in den Importersettings eingestellt, werden: solution laut Stackoverflow:
         // https://stackoverflow.com/questions/25175864/making-a-texture2d-readable-in-unity-via-code

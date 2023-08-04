@@ -17,7 +17,9 @@ public class CameraManager : MonoBehaviour
     string fileName;
 
     private void Start() {
+
         webcamDevices = WebCamTexture.devices;
+        Debug.Log("camera name: " + webcamDevices[0].name);
         if (webcamDevices.Length == 0) {
             throw new System.Exception("no camera devices found");
         }
