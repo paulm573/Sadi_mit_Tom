@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 public class WorldBuilder : MonoBehaviour
 {
     public string path = "";
-    GameObject wall, red, orange, blue, floor;
+    GameObject whiteWall, coin, blueWall, tree, floor;
     List<(int, int)> legalSpawns;
     [SerializeField]Transform playerTransform;
 
@@ -22,10 +22,10 @@ public class WorldBuilder : MonoBehaviour
 
     private void LoadPrefabs()
     {   
-        red = (GameObject)Resources.Load(path + "/" + "red");
-        orange = (GameObject)Resources.Load(path + "/" + "orange");
-        blue = (GameObject)Resources.Load(path + "/" + "blue");
-        wall = (GameObject)Resources.Load(path + "/" + "wall");
+        whiteWall = (GameObject)Resources.Load(path + "/" + "whiteWall");
+        coin = (GameObject)Resources.Load(path + "/" + "coin");
+        tree = (GameObject)Resources.Load(path + "/" + "tree");
+        blueWall = (GameObject)Resources.Load(path + "/" + "blueWall");
         floor = (GameObject)Resources.Load(path + "/" + "floor");
         legalSpawns = new List<(int, int)>();
        
@@ -65,20 +65,20 @@ public class WorldBuilder : MonoBehaviour
     private void SetScale(int nipScale, int nipCount_I, int nipCount_J)
     {
         Vector3 scale = new Vector3(nipScale,nipScale,nipScale);
-        red.transform.localScale = scale;
-        orange.transform.localScale = scale;    
-        blue.transform.localScale = scale;
-        wall.transform.localScale = scale;
+        whiteWall.transform.localScale = scale;
+        blueWall.transform.localScale = scale;
+        coin.transform.localScale = scale;
+        tree.transform.localScale = scale;
         floor.transform.localScale = new Vector3(nipScale*nipCount_I,1f,nipScale*nipCount_J);
     }
 
     private void InstaniateObject(string type, Vector3 pos, Vector3 rot) {
         switch (type)
         {
-            case "wall": Instantiate(wall, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
-            case "orange": Instantiate(orange, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
-            case "blue": Instantiate(blue, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
-            case "red": Instantiate(red, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
+            case "whiteWall": Instantiate(whiteWall, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
+            case "blueWall": Instantiate(blueWall, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
+            case "coin": Instantiate(coin, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
+            case "tree": Instantiate(tree, pos, Quaternion.Euler(rot)).transform.SetParent(this.transform); break;
         } 
     }
 }
