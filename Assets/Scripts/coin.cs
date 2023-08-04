@@ -13,9 +13,9 @@ public class coin : MonoBehaviour
         transform.Rotate(Vector3.one * rotationSpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    private void OnTriggerEnter(Collider other) {
         this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
         Debug.Log("hi");
     }
 }

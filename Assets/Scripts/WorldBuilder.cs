@@ -13,11 +13,13 @@ public class WorldBuilder : MonoBehaviour
     GameObject whiteWall, coin, blueWall, tree, floor;
     List<(int, int)> legalSpawns;
     [SerializeField]Transform playerTransform;
+    
 
     private void Awake()
     {
         this.transform.localScale= Vector3.one;
         LoadPrefabs();
+        floor.GetComponent<SafePlayer>().Player = playerTransform;
     }
 
     private void LoadPrefabs()
@@ -28,7 +30,7 @@ public class WorldBuilder : MonoBehaviour
         blueWall = (GameObject)Resources.Load(path + "/" + "blueWall");
         floor = (GameObject)Resources.Load(path + "/" + "floor");
         legalSpawns = new List<(int, int)>();
-       
+          
     }
 
     public void CreateWorld(int nipScale,int nipCount_I, int nipCount_J, Stack<WorldObject> worldObjects) 
@@ -70,6 +72,7 @@ public class WorldBuilder : MonoBehaviour
         coin.transform.localScale = scale;
         tree.transform.localScale = scale;
         floor.transform.localScale = new Vector3(nipScale*nipCount_I,1f,nipScale*nipCount_J);
+
     }
 
     private void InstaniateObject(string type, Vector3 pos, Vector3 rot) {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.745
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1971449527}
-  m_IndirectSpecularColor: {r: 0.09533584, g: 0.031233825, b: 0.053739093, a: 0.745}
+  m_IndirectSpecularColor: {r: 0.095335506, g: 0.031235026, b: 0.053737268, a: 0.745}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -391,6 +391,10 @@ PrefabInstance:
     - target: {fileID: 5777780407979046064, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944430428051221555, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
+      propertyPath: magnitudeMultiplier
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6900890504709024280, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -746,7 +750,7 @@ MonoBehaviour:
   - coin
   - tree
   worldBuilder: {fileID: 1832370621}
-  generateMazePath: exampleWorld
+  generateMazePath: currentMaze
   hueStrength: 1
   saturationStrength: 1
   valueStrength: 1
