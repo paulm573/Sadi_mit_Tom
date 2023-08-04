@@ -48,18 +48,18 @@ public class WorldBuilder : MonoBehaviour
             
             (int i, int j) = next.position;
             
-            Vector3 position = new Vector3(i * nipScale, 0f, j * nipScale);
+            Vector3 position = new Vector3(i * nipScale, 40f, j * nipScale);
 
             InstaniateObject(next.type, position, rotation);
         }
         // create Floor
         float floorX = (nipScale * nipCount_I) / 2 - nipScale / 2;
-        float floorY = (nipScale / 2 * -1) - 0.5f;
+        float floorY = (nipScale / 2 * -1) - 0.5f + 40f;
         float floorZ = (nipScale * nipCount_J) / 2 - nipScale / 2;
         Instantiate(floor, new Vector3(floorX, floorY ,floorZ ), Quaternion.Euler(rotation)).transform.SetParent(this.transform);
         // place player
         (int x, int z) = legalSpawns[UnityEngine.Random.Range(0, legalSpawns.Count)];
-        playerTransform.position = new Vector3(x * nipScale, 10f, z * nipScale);
+        playerTransform.position = new Vector3(x * nipScale, 65f, z * nipScale);
     }
 
     private void SetScale(int nipScale, int nipCount_I, int nipCount_J)

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public string[] OBJECTNAMEATINDEX = { "wall" };
 
     public WorldBuilder worldBuilder;
-    public Renderer textureRenderer;
+
 
     public string generateMazePath;
 
@@ -120,8 +120,6 @@ public class GameManager : MonoBehaviour
         texture.Apply();
 
 
-        textureRenderer.sharedMaterial.mainTexture = texture;
-        textureRenderer.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
     static Color[] To1DArray(Color[,] input) {
